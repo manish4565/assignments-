@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        #timer {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div id="timer">05:00</div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <script>
+        let initialTime = 300; // 5 minutes in seconds
+        let timeLeft = initialTime;
+        let timer;
+        const timerDisplay = document.getElementById('timer');
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            timerDisplay.textContent = formatTime(timeLeft);
+            if (timeLeft > 0) {
+                timeLeft--;
+                timer = setTimeout(updateTimer, 1000);
+            } else {
+                timerDisplay.textContent = "Time's up!";
+            }
+        }
+
+        function startTimer() {
+            if (!timer) {
+                timer = setTimeout(updateTimer, 1000);
+            }
+        }
+
+        function stopTimer() {
+            clearTimeout(timer);
+            timer = null;
+        }
+
+        function resetTimer() {
+            clearTimeout(timer);
+            timer = null;
+            timeLeft = initialTime;
+            timerDisplay.textContent = formatTime(timeLeft);
+        }
+    </script>
+</body>
+</html>

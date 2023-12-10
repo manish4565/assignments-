@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Employee Management System</title>
+</head>
+<body>
+  <h1>Employee Management System</h1>
+  
+  <form id="employeeForm">
+    <input type="text" id="employeeName" placeholder="Name of the Employee" required><br><br>
+    <input type="text" id="employeeID" placeholder="Employee ID" required><br><br>
+    <select id="department" required>
+      <option value="">Select Department</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Ops">Ops</option>
+      <option value="HR">HR</option>
+      <option value="IA">IA</option>
+      <!-- Add more department options -->
+    </select><br><br>
+    <input type="number" id="experience" placeholder="Experience in years" required><br><br>
+    <input type="email" id="email" placeholder="Email address" required><br><br>
+    <input type="tel" id="mobile" placeholder="Mobile Number" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <label for="filterDepartment">Filter by Department:</label>
+  <select id="filterDepartment">
+    <option value="all">All Departments</option>
+    <option value="Frontend">Frontend</option>
+    <option value="Backend">Backend</option>
+    <option value="Ops">Ops</option>
+    <option value="HR">HR</option>
+    <option value="IA">IA</option>
+    <!-- Add more department options -->
+  </select><br><br>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Employee ID</th>
+        <th>Department</th>
+        <th>Experience (Years)</th>
+        <th>Email Address</th>
+        <th>Mobile Number</th>
+        <th>Role</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTableBody">
+      <!-- Table body will be populated dynamically -->
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>

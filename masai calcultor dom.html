@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Calculator</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+     
+      
+    }
+
+    #calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      max-width: 300px;
+      padding: 4px;
+      border: solid red;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #result {
+      grid-column: span 4;
+      text-align: right;
+      padding: 10px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <div id="result">0</div>
+    <button onclick="clearResult()">C</button>
+    <button onclick="appendToResult('/')">/</button>
+    <button onclick="appendToResult('*')">*</button>
+    <button onclick="appendToResult('7')">7</button>
+    <button onclick="appendToResult('8')">8</button>
+    <button onclick="appendToResult('9')">9</button>
+    <button onclick="appendToResult('-')">-</button>
+    <button onclick="appendToResult('4')">4</button>
+    <button onclick="appendToResult('5')">5</button>
+    <button onclick="appendToResult('6')">6</button>
+    <button onclick="appendToResult('+')">+</button>
+    <button onclick="appendToResult('1')">1</button>
+    <button onclick="appendToResult('2')">2</button>
+    <button onclick="appendToResult('3')">3</button>
+    <button onclick="calculateResult()">=</button>
+    <button onclick="appendToResult('0')">0</button>
+    <button onclick="appendToResult('.')">.</button>
+  </div>
+
+  <script>
+    let resultElement = document.getElementById('result');
+    let currentInput = '';
+
+    function appendToResult(value) {
+      currentInput += value;
+      updateResult();
+    }
+
+    function clearResult() {
+      currentInput = '';
+      updateResult();
+    }
+
+    function calculateResult() {
+      try {
+        currentInput = eval(currentInput).toString();
+        updateResult();
+      } catch (error) {
+        currentInput = 'Error';
+        updateResult();
+      }
+    }
+
+    function updateResult() {
+      resultElement.textContent = currentInput;
+    }
+  </script>
+</body>
+</html>

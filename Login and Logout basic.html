@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+</head>
+<body>
+  <h1>This example demonstrates how we can change text content when clicking on button</h1>
+  <hr>
+  <h1 id="display">Click on Login to continue</h1>
+  <button onClick="login()">Login</button>
+  <button onClick="logout()">Logout</button>
+
+  <script>
+    function login() {
+      const displayText = document.getElementById('display');
+      
+      // Change text content to 'Login Success'
+      displayText.textContent = 'Login Success';
+      console.log('Text changed to "Login Success"');
+    }
+
+    function logout() {
+      const displayText = document.getElementById('display');
+      
+      // Change text content to 'Logout Success'
+      displayText.textContent = 'Logout Success';
+      console.log('Text changed to "Logout Success"');
+    }
+  </script>
+</body>
+</html>

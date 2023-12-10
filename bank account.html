@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bank Account Management</title>
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#accountList {
+  list-style: none;
+  padding: 0;
+}
+
+.account {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.account h2 {
+  margin-top: 0;
+}
+
+#totalBalance {
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bank Account Management</h1>
+  </header>
+
+  <main>
+    <section id="accountList">
+      <!-- Bank account details will be dynamically added here -->
+    </section>
+
+    <section id="totalBalance">
+      <p>Total Balance of All Active Accounts: <span id="totalBalanceValue">$0</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Bank Account Management. All rights reserved.</p>
+  </footer>
+
+  
+</body>
+</html>
+<script>
+    // Constructor function for BankAccount
+function BankAccount(accountNumber, name, type, balance) {
+  this.accountNumber = accountNumber;
+  this.name = name;
+  this.type = type;
+  this.balance = balance;
+  this.active = true;
+}
+
+// Methods added to the BankAccount prototype
+BankAccount.prototype.deposit = function(amount) {
+  if (amount > 0) {
+    this.balance += amount;
+    console.log(Deposited $${amount}. New balance: $${this.balance});
+  } else {
+    console.log('Invalid deposit amount.');
+  }
+};
+
+BankAccount.prototype.withdraw = function(amount) {
+  if (this.active) {
+    if (amount > 0 && amount <= this.balance) {
+      this.balance -= amount;
+      console.log(Withdrawn $${amount}. New balance: $${this.balance});
+    } else {
+      console.log('Invalid withdrawal amount or insufficient balance.');
+    }
+  } else {
+    console.log('Account is not active.');
+  }
+};
+
+BankAccount.prototype.checkBalance = function() {
+  console.log(Account balance: $${this.balance});
+};
+
+BankAccount.prototype.isActive = function() {
+  return this.active;
+};
+
+// Function to calculate total balance of all active accounts
+function getTotalBalance(accounts) {
+  let totalBalance = 0;
+  for (const account of accounts) {
+    if (account.isActive()) {
+      totalBalance += account.balance;
+    }
+  }
+  return totalBalance;
+}
+
+// Creating multiple BankAccount objects
+const account1 = new BankAccount(123456, 'John Doe', 'Savings', 1000);
+const account2 = new BankAccount(789012, 'Jane Smith', 'Checking', 500);
+
+// Performing operations on accounts
+account1.deposit(200);
+account1.withdraw(50);
+account1.checkBalance();
+
+account2.deposit(100);
+account2.withdraw(200);
+account2.checkBalance();
+
+// Testing isActive method
+console.log(Account 1 active: ${account1.isActive()});
+console.log(Account 2 active: ${account2.isActive()});
+
+// Testing getTotalBalance function
+const allAccounts = [account1, account2];
+const totalBalance = getTotalBalance(allAccounts);
+console.log(Total balance of all active accounts: $${totalBalance});
+
+</script>

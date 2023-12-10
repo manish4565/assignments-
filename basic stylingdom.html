@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="masaiHeading">Masai School</h1>
+    <button onclick="changeRed()">Change Text color to red</button>
+    <button onclick="changeYellow()">Change Text color to yellow</button>
+  </body>
+  <script>
+    function changeRed() {
+      var masaiHeading = document.getElementById('masaiHeading');
+      masaiHeading.style.color = 'red';
+    }
+
+    function changeYellow() {
+      var masaiHeading = document.getElementById('masaiHeading');
+      masaiHeading.style.color = 'yellow';
+    }
+  </script>
+</html>

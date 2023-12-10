@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Hospital Records</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: rgb(128, 30, 193)255;
+  text-align: center;
+}
+
+div {
+  max-width: 950px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding: 2px;
+  border: solid black;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #29b963;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+}
+
+button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8d170a;
+}
+
+  </style>
+  
+</head>
+<body>
+  <h1>Hospital - Doctor Records</h1>
+  <div>
+    <form id="doctorForm">
+      <label for="name">Doctor Name</label><br />
+      <input id="name" type="text" placeholder="Enter Doctor Name" required /><br />
+      <label for="docID">Doctor ID</label><br />
+      <input id="docID" type="number" placeholder="Enter Doctor ID" required /><br />
+      <label for="dept">Specialization </label><br />
+      <select id="dept" required>
+        <option value="">Select Specialization</option>
+        <option value="Dermatologist">Dermatologist</option>
+        <option value="ENT">ENT</option>
+        <option value="Dentist">Dentist</option>
+        <option value="COVID">COVID</option>
+        <option value="Gynecologist">Gynecologist</option>
+      </select><br />
+      <label for="exp">Experience </label><br />
+      <input id="exp" type="number" placeholder="Experience in Years" required /><br />
+      <label for="email">Email Address </label><br />
+      <input type="text" id="email" placeholder="Enter Email Address" required /><br />
+      <label for="mbl">Mobile Number </label><br />
+      <input id="mbl" type="number" placeholder="Enter Mobile number" required /><br />
+      <input type="submit" />
+    </form>
+    <table id="doctorTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Doctor ID</th>
+          <th>Specialization</th>
+          <th>Experience in years</th>
+          <th>Email address</th>
+          <th>Mobile Number</th>
+          <th>Role</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ******* Append your output here ********* -->
+      </tbody>
+    </table>
+  </div>
+
+  
+  <script>
+    document.getElementById('doctorForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      addDoctor();
+    });
+
+    function addDoctor() {
+      var name = document.getElementById('name').value;
+      var docID = document.getElementById('docID').value;
+      var dept = document.getElementById('dept').value;
+      var exp = document.getElementById('exp').value;
+      var email = document.getElementById('email').value;
+      var mbl = document.getElementById('mbl').value;
+
+      // Determine role based on experience
+      var role = getRole(exp);
+
+      // Create a new table row
+      var row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${docID}</td>
+        <td>${dept}</td>
+        <td>${exp}</td>
+        <td>${email}</td>
+        <td>${mbl}</td>
+        <td>${role}</td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+      `;
+
+      // Append the new row to the table body
+      document.querySelector('#doctorTable tbody').appendChild(row);
+
+      // Clear the form fields
+      document.getElementById('name').value = '';
+      document.getElementById('docID').value = '';
+      document.getElementById('dept').value = '';
+      document.getElementById('exp').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('mbl').value = '';
+    }
+
+    function deleteRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+    function getRole(experience) {
+      if (experience > 5) {
+        return 'Senior';
+      } else if (experience >= 2 && experience <= 5) {
+        return 'Junior';
+      } else {
+        return 'Trainee';
+      }
+    }
+  </script>
+</body>
+</html>

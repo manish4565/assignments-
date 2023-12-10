@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #leaderboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: solid black 2px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 5px;
+      
+    }
+
+    button {
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: orangered;
+    }
+
+    #score {
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    #min-score, #max-score {
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 16px;
+      font-weight: bold;
+     
+    }
+  </style>
+</head>
+<body>
+  <div id="leaderboard">
+    <div class="button-container">
+      <button onclick="addToScore(1)">1</button>
+      <button onclick="addToScore(2)">2</button>
+      <button onclick="addToScore(3)">3</button>
+    </div>
+    <div class="button-container">
+      <button onclick="addToScore(4)">4</button>
+      <button onclick="addToScore(5)">5</button>
+      <button onclick="addToScore(6)">6</button>
+    </div>
+    <div class="button-container">
+      <button onclick="addToScore(7)">7</button>
+      <button onclick="addToScore(8)">8</button>
+      <button onclick="addToScore(9)">9</button>
+    </div>
+    <button onclick="addToScore(0)">0</button>
+    <button onclick="enterScore()">ENTER</button>
+    <div id="score"></div>
+    <div>MIN: <span id="min-score">--</span></div>
+    <div>MAX: <span id="max-score">--</span></div>
+  </div>
+
+  <script>
+    var currentScore = '';
+    var minScore = Infinity;
+    var maxScore = -Infinity;
+
+    function addToScore(number) {
+      currentScore += number;
+      updateScore();
+    }
+
+    function enterScore() {
+      var score = parseInt(currentScore);
+
+      if (!isNaN(score)) {
+        if (score < minScore) {
+          minScore = score;
+          updateMinScore();
+        }
+
+        if (score > maxScore) {
+          maxScore = score;
+          updateMaxScore();
+        }
+      }
+
+      currentScore = '';
+      updateScore();
+    }
+
+    function updateScore() {
+      document.getElementById('score').textContent = currentScore;
+    }
+
+    function updateMinScore() {
+      document.getElementById('min-score').textContent = minScore;
+    }
+
+    function updateMaxScore() {
+      document.getElementById('max-score').textContent = maxScore;
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #leaderboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: solid black 2px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 5px;
+      
+    }
+
+    button {
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: orangered;
+    }
+
+    #score {
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    #min-score, #max-score {
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 16px;
+      font-weight: bold;
+     
+    }
+  </style>
+</head>
+<body>
+  <div id="leaderboard">
+    <div class="button-container">
+      <button onclick="addToScore(1)">1</button>
+      <button onclick="addToScore(2)">2</button>
+      <button onclick="addToScore(3)">3</button>
+    </div>
+    <div class="button-container">
+      <button onclick="addToScore(4)">4</button>
+      <button onclick="addToScore(5)">5</button>
+      <button onclick="addToScore(6)">6</button>
+    </div>
+    <div class="button-container">
+      <button onclick="addToScore(7)">7</button>
+      <button onclick="addToScore(8)">8</button>
+      <button onclick="addToScore(9)">9</button>
+    </div>
+    <button onclick="addToScore(0)">0</button>
+    <button onclick="enterScore()">ENTER</button>
+    <div id="score"></div>
+    <div>MIN: <span id="min-score">--</span></div>
+    <div>MAX: <span id="max-score">--</span></div>
+  </div>
+
+  <script>
+    var currentScore = '';
+    var minScore = Infinity;
+    var maxScore = -Infinity;
+
+    function addToScore(number) {
+      currentScore += number;
+      updateScore();
+    }
+
+    function enterScore() {
+      var score = parseInt(currentScore);
+
+      if (!isNaN(score)) {
+        if (score < minScore) {
+          minScore = score;
+          updateMinScore();
+        }
+
+        if (score > maxScore) {
+          maxScore = score;
+          updateMaxScore();
+        }
+      }
+
+      currentScore = '';
+      updateScore();
+    }
+
+    function updateScore() {
+      document.getElementById('score').textContent = currentScore;
+    }
+
+    function updateMinScore() {
+      document.getElementById('min-score').textContent = minScore;
+    }
+
+    function updateMaxScore() {
+      document.getElementById('max-score').textContent = maxScore;
+    }
+  </script>
+</body>
+</html>

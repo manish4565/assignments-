@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #stopwatchContainer {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+
+        #display {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #buttonsContainer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <title>Stopwatch</title>
+</head>
+<body>
+    <div id="stopwatchContainer">
+        <div id="display">00:00.000</div>
+        <div id="buttonsContainer">
+            <button id="startButton" onclick="startStopwatch()">Start</button>
+            <button id="stopButton" onclick="stopStopwatch()">Stop</button>
+            <button id="resetButton" onclick="resetStopwatch()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let stopwatchInterval;
+        let startTime;
+        let elapsedTime = 0;
+        let lapTimes = [];
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            const milliseconds = Math.floor((time % 1) * 1000);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').textContent = formatTime(elapsedTime);
+        }
+
+        // Initialize the display with the initial time
+        updateDisplay();
+
+        function startStopwatch() {
+            if (!stopwatchInterval) {
+                startTime = Date.now() - (elapsedTime * 1000); // Calculate startTime based on the elapsed time
+                stopwatchInterval = setInterval(function () {
+                    elapsedTime = (Date.now() - startTime) / 1000;
+                    updateDisplay();
+                }, 10);
+            }
+        }
+
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval);
+            stopwatchInterval = null;
+        }
+
+        function resetStopwatch() {
+            clearInterval(stopwatchInterval);
+            elapsedTime = 0;
+            updateDisplay();
+            stopwatchInterval = null;
+        }
+    </script>
+</body>
+</html>

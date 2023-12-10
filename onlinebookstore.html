@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Online Bookstore</title>
+  <style>
+    body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#bookList {
+  list-style: none;
+  padding: 0;
+}
+
+.book {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.book h2 {
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Online Bookstore</h1>
+  </header>
+
+  <main>
+    <section id="bookList">
+      <!-- Book details will be dynamically added here -->
+      <div class="book">
+        <h2>Loading...</h2>
+        <p>Author: Loading...</p>
+        <p>Genre: Loading...</p>
+        <p>Price: Loading...</p>
+      </div>
+    </section>
+  </main>
+
+  
+</body>
+</html>
+<script>
+    // Author constructor function
+function Author(name, birthYear, nationality) {
+  this.name = name;
+  this.birthYear = birthYear;
+  this.nationality = nationality;
+}
+
+// Book constructor function
+function Book(title, author, genre, price) {
+  this.title = title;
+  this.author = author;
+  this.genre = genre;
+  this.price = price;
+}
+
+// Method to get book information
+Book.prototype.getBookInfo = function () {
+  console.log(Title: ${this.title});
+  console.log(Author: ${this.author.name});
+  console.log(Genre: ${this.genre});
+  console.log(Price: $${this.price});
+  console.log('-------------------------');
+};
+
+// Creating instances of Author and Book
+const author1 = new Author('J.K. Rowling', 1965, 'British');
+const book1 = new Book('Harry Potter and the Sorcerer\'s Stone', author1, 'Fantasy', 20.99);
+
+const author2 = new Author('George Orwell', 1903, 'British');
+const book2 = new Book('1984', author2, 'Dystopian', 15.99);
+
+const author3 = new Author('Jane Austen', 1775, 'British');
+const book3 = new Book('Pride and Prejudice', author3, 'Classic', 12.50);
+
+// Displaying book details
+book1.getBookInfo();
+book2.getBookInfo();
+book3.getBookInfo();
+
+</script>

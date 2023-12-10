@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #slideshowContainer {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #slideshow {
+            display: flex;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        #controlsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #startStopButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 0 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #startStopButton:hover {
+            background-color: #45a049;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #prevButton, #nextButton {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            margin: 0 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #prevButton:hover, #nextButton:hover {
+            background-color: #2980b9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <title>Slideshow</title>
+</head>
+<body>
+    <div id="slideshowContainer">
+        <div id="slideshow">
+            <!-- Add your images here -->
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_0fd3c0c2.jpg" alt="Slide 1">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_1df8339a.jpg" alt="Slide 2">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_d90dfdef.jpg" alt="Slide 3">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e9d6283e.jpg" alt="Slide 4">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e83d7180.jpg" alt="Slide 5">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e7787c8e.jpg" alt="Slide 6">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_2f759dc3.jpg" alt="Slide 7">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_4bf14906.jpg" alt="Slide 8">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_4bf14906.jpg" alt="Slide 9">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_1df8339a.jpg" alt="Slide 2">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_d90dfdef.jpg" alt="Slide 3">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e9d6283e.jpg" alt="Slide 4">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e83d7180.jpg" alt="Slide 5">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.52_e7787c8e.jpg" alt="Slide 6">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_2f759dc3.jpg" alt="Slide 7">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_4bf14906.jpg" alt="Slide 8">
+            <img class="slide" src="WhatsApp Image 2023-12-06 at 14.26.53_4bf14906.jpg" alt="Slide 9">
+            
+
+            <!-- Add more images... -->
+        </div>
+    </div>
+
+    <div id="controlsContainer">
+        <button id="prevButton" onclick="prevSlide()">Previous</button>
+        <button id="startStopButton" onclick="startStopSlideShow()">Start</button>
+        <button id="nextButton" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let slideshowInterval;
+        let slideshowRunning = false;
+
+        function startStopSlideShow() {
+            if (slideshowRunning) {
+                clearInterval(slideshowInterval);
+                document.getElementById('startStopButton').textContent = 'Start';
+            } else {
+                slideshowInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+                document.getElementById('startStopButton').textContent = 'Stop';
+            }
+            slideshowRunning = !slideshowRunning;
+        }
+
+        function prevSlide() {
+            clearInterval(slideshowInterval);
+            slideshowRunning = false;
+            const slideshow = document.getElementById('slideshow');
+            slideshow.appendChild(slideshow.firstElementChild);
+            updateTransform();
+        }
+
+        function nextSlide() {
+            clearInterval(slideshowInterval);
+            slideshowRunning = false;
+            const slideshow = document.getElementById('slideshow');
+            slideshow.insertBefore(slideshow.lastElementChild, slideshow.firstElementChild);
+            updateTransform();
+        }
+
+        function updateTransform() {
+            const slideshow = document.getElementById('slideshow');
+            const slideWidth = slideshow.firstElementChild.clientWidth;
+            slideshow.style.transform = translateX(${-slideWidth}px);
+            setTimeout(() => {
+                slideshow.style.transition = 'transform 0.2s ease-in-out';
+                slideshow.style.transform = 'translateX(0)';
+            }, 0);
+            setTimeout(() => {
+                slideshow.style.transition = 'none';
+            }, 500);
+        }
+    </script>
+</body>
+</html>

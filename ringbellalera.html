@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events</title>
+  </head>
+  <body>
+    <img
+      src="https://miro.medium.com/max/1400/1*mdcu3Ku9r44HMtraHUqu5g.jpeg"
+      alt=""
+      id="clickableImage"
+    />
+    <script>
+      document.getElementById('clickableImage').addEventListener('click', function() {
+        var confirmation = confirm("The website you are going to visit may harm your computer, do you still want to redirect?");
+        
+        if (confirmation) {
+          // If the user clicks "OK" in the confirmation dialog, you can redirect or perform any other action here.
+          alert("You chose to continue to the website.");
+        } else {
+          // If the user clicks "Cancel" in the confirmation dialog, you can handle that case here.
+          alert("You chose not to continue to the website.");
+        }
+      });
+    </script>
+  </body>
+</html>
